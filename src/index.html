@@ -6,10 +6,236 @@
     <title>Assignment 3 - Landing Page</title>
     <link href="./output.css" rel="stylesheet" />
   </head>
-  <body>
+  <body class="font-sans bg-black text-white">
     <!-- ========== NAVBAR ========== -->
+    <header>
+      <nav
+        class="flex items-center justify-between md:justify-around lg:justify-around mx-2 py-4 px-2"
+      >
+        <div class="">
+          <p class="bg-merah-test text-display-xs font-bold">Tech.</p>
+        </div>
 
+        <input type="checkbox" id="menu-toggler" class="hidden" />
+        <label
+          for="menu-toggler"
+          class="block md:hidden lg:hidden cursor-pointer"
+        >
+          <img
+            src="../assets/icons/menu-01.png"
+            alt="Burger-Menu"
+            class="block md:hidden lg:hidden"
+          />
+          <img
+            src="../assets/icons/x-icon.png"
+            alt="Close-Button"
+            class="hidden"
+          />
+        </label>
+
+        <ul class="hidden md:flex lg:flex md:gap-8 lg:gap-8 text-sm">
+          <li>About</li>
+          <li>Service</li>
+          <li>Our Work</li>
+          <li>Team</li>
+          <button class="hidden">Contact Us</button>
+        </ul>
+
+        <button
+          class="hidden md:block md:w-[12.5%] bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold py-2 rounded-full transition-colors"
+        >
+          <p class="text-md">Contact Us</p>
+        </button>
+      </nav>
+    </header>
     <!-- ========== HERO SECTION ========== -->
+    <main
+      class="bg-[linear-gradient(to_bottom,_black_0%,_#210a5e4d_30%)] min-h-screen mx-2 pt-4 px-2"
+    >
+      <section
+        class="md:flex md:items-center lg:flex md:justify-around md:px-20"
+      >
+        <div class="md:flex-[1.2] md:max-w-[650px] md:-mt-[30px]">
+          <h1 class="text-display-xl leading-display-xl font-bold py-4">
+            Build with the <em>Future.</em>
+          </h1>
+          <p class="text-neutral-500 leading-md py-4">
+            From building sleek websites and mobile apps to integrating AI
+            solutions, we help brands turn ideas into powerful digital
+            experiences that connect, engage, and scale.
+          </p>
+          <button
+            class="w-full md:w-1/2 bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold py-4 my-4 rounded-full transition-colors"
+          >
+            Let's Talk
+          </button>
+        </div>
+        <div
+          class="lg:flex lg:flex-1 lg:justify-start -translate-x-12 -translate-y-0"
+        >
+          <img
+            class="lg:w-full"
+            src="../assets/images/hand.png"
+            alt="Main Image"
+          />
+        </div>
+      </section>
+    </main>
+
+    <!-- who are we section -->
+    <section
+      class="flex flex-col items-center text-center my-4 py-4 px-4 gap-4"
+    >
+      <h2 class="text-display-sm font-bold">Who We Are</h2>
+      <p class="text-lg leading-lg font-semibold">
+        <span class="text-neutral-500"
+          >We're a group of tech students trained in</span
+        >
+        building real-world digital products.<span class="text-neutral-500"
+          ><br />From coding to design, we</span
+        >
+        craft modern solutions for modern problems.
+      </p>
+    </section>
+
+    <!-- what we do  section -->
+    <section
+      class="flex flex-col items-center text-center my-4 py-4 px-4 gap-4"
+    >
+      <div class="">
+        <h2 class="text-display-sm font-bold">What We Do</h2>
+        <p class="text-sm text-neutral-500">
+          We offer simple tech solutions to help your ideas grow.
+        </p>
+      </div>
+      <div class="">
+        <div
+          class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3 md:mx-20 lg:mx-20"
+        >
+          <div
+            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          >
+            <img
+              src="../assets/icons/whatwedo/Website.png"
+              alt="Website Development Icon"
+              class="whatwedo-icon"
+            />
+            <h4 class="text-lg font-bold">Web Development</h4>
+            <p class="text-sm text-neutral-500">
+              Modern websites using HTML, CSS, JavaScript, and frameworks.
+            </p>
+          </div>
+          <div
+            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          >
+            <img
+              src="../assets/icons/whatwedo/Mobile.png"
+              alt="Website Development Icon"
+              class="whatwedo-icon"
+            />
+            <h4 class="text-lg font-bold">App Development</h4>
+            <p class="text-sm text-neutral-500">
+              Mobile and desktop apps tailored for your needs
+            </p>
+          </div>
+          <div
+            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          >
+            <img
+              src="../assets/icons/whatwedo/AI.png"
+              alt="Website Development Icon"
+              class="whatwedo-icon"
+            />
+            <h4 class="text-lg font-bold">AI Integration</h4>
+            <p class="text-sm text-neutral-500">
+              Smart solutions using AI-powered tools and automation.
+            </p>
+          </div>
+          <div
+            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          >
+            <img
+              src="../assets/icons/whatwedo/Paint.png"
+              alt="Website Development Icon"
+              class="whatwedo-icon"
+            />
+            <h4 class="text-lg font-bold">UI/UX Design</h4>
+            <p class="text-sm text-neutral-500">
+              Clean and functional designs for better user experience.
+            </p>
+          </div>
+          <div
+            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          >
+            <img
+              src="../assets/icons/whatwedo/LandingPage.png"
+              alt="Website Development Icon"
+              class="whatwedo-icon"
+            />
+            <h4 class="text-lg font-bold">Landing Page Design</h4>
+            <p class="text-sm text-neutral-500">
+              High-converting landing pages for your product or business.
+            </p>
+          </div>
+          <div
+            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          >
+            <img
+              src="../assets/icons/whatwedo/CMS.png"
+              alt="Website Development Icon"
+              class="whatwedo-icon"
+            />
+            <h4 class="text-lg font-bold">CMS Integration</h4>
+            <p class="text-sm text-neutral-500">
+              Easy-to-manage websites with WordPress or Webflow.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- our work section -->
+    <section
+      class="flex flex-col items-center text-center my-4 py-4 px-4 gap-4"
+    >
+      <div class="">
+        <h2 class="text-display-sm font-bold">Our Work</h2>
+        <p class="text-sm text-neutral-500">
+          See what we’ve built with passion and purpose
+        </p>
+      </div>
+
+      <div class="lower">
+        <div class="ourwork-container">
+          <div class="ourwork-item">
+            <img
+              src="../assets/images/ourwork/portofolio-1.png"
+              alt="Our Work 1"
+              class="ourwork-image"
+            />
+            <p>Portofolio 1</p>
+          </div>
+
+          <div class="ourwork-item">
+            <img
+              src="../assets/images/ourwork/portofolio-2.png"
+              alt="Our Work 2"
+              class="ourwork-image"
+            />
+            <p>Portofolio 2</p>
+          </div>
+
+          <div class="ourwork-item">
+            <img
+              src="../assets/images/ourwork/portofolio-3.png"
+              alt="Our Work 3"
+              class="ourwork-image"
+            />
+            <p>Portofolio 3</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ========== FOOTER ========== -->
   </body>
