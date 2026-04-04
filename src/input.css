@@ -1,1 +1,49 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  /* FONT FAMILY */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-young: 'Young Serif', serif;
+
+  /* CUSTOM FONT SIZES -  menurut figma design system */
+  --text-display-3xl: 60px;
+  --text-display-xl: 40px;
+  --text-display-md: 32px;
+  --text-display-sm: 28px;
+
+  --text-display-xs: 24px;
+
+  /* CUSTOM LINE HEIGHT - menurut figma design system */
+
+  --leading-display-3xl: 72px;
+  --leading-display-xl: 48px;
+  --leading-display-md: 40px;
+  --leading-display-sm: 38px;
+  --leading-display-xs: 36px;
+
+  --text-xl: 20px;
+  --text-lg: 18px;
+  --text-md: 16px;
+  --text-sm: 14px;
+  --text-xs: 12px;
+
+  --leading-xl: 34px;
+  --leading-lg: 32px;
+  --leading-md: 30px;
+
+  /* CUSTOM COLORS - menurut figma design system */
+  /* Untuk Button */
+  --color-primary-100: #421abc;
+  --color-primary-blue-dark: #0056b3;
+
+  /* Untuk text */
+  --color-neutral-500: #717680;
+  --color-neutral-800: #252b37;
+  --color-neutral-900: #181d27;
+
+  /* Tambahkan line-height */
+  --line-height-xs: 1;
+  --line-height-utama: 1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Young+Serif&display=swap');
