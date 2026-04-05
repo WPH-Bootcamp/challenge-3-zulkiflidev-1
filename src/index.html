@@ -8,65 +8,74 @@
   </head>
   <body class="font-sans bg-black text-white">
     <!-- ========== NAVBAR ========== -->   
-      <header class="relative z-50">
-        <nav class="flex items-center justify-between md:justify-around lg:justify-around mx-2 py-4 px-2">
-          
-          <div>
-            <p class="text-display-xs font-bold">Tech.</p>
-          </div>
-          <!-- Burger/Close Button -->
-          <button
-            id="menu-btn"
-            class="block md:hidden cursor-pointer relative"
-            onclick="toggleMenu()"
-          >
-            <img
-              id="burger-icon"
-              src="../assets/icons/menu-01.png"
-              alt="Burger-Menu"
-            />
-            <img
-              id="close-icon"
-              src="../assets/icons/x-icon.png"
-              alt="Close-Button"
-              style="display:none;"
-            />
-          </button>
 
-          <!-- Desktop nav links -->
-          <ul class="hidden md:flex gap-8 text-sm">
-            <li>About</li>
-            <li>Service</li>
-            <li>Our Work</li>
-            <li>Team</li>
-          </ul>
+    <header>
+      <nav class="fixed top-0 left-0 right-0 flex items-center justify-between md:justify-around lg:justify-around mx-2 py-4 px-2 bg-black z-50">
 
-          <!-- Desktop button -->
-          <button class="hidden md:block md:w-[12.5%] bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold py-2 rounded-full transition-colors cursor-pointer">
-            <p class="text-sm md:text-md lg:text-md">Contact Us</p>
-          </button>
+        <!-- Logo -->
+        <div>
+          <p class="text-display-xs font-bold">Tech.</p>
+        </div>
 
-        </nav>
+        <!-- Input checkbox -->
+        <input type="checkbox" id="menu-toggler" class="peer hidden" />
 
-        <!-- Mobile menu overlay — mulai dari bawah navbar -->
-        <div
-          id="mobile-menu"
-          style="display:none;"
-          class="fixed left-0 right-0 bottom-0 z-40 bg-black flex-col items-start justify-start py-6 px-4 md:hidden"
+        <!-- Label kosong sebagai scroll blocker -->
+        <label
+          for="menu-toggler"
+          class="md:hidden peer-checked:fixed peer-checked:top-16 peer-checked:left-0 peer-checked:w-dvw peer-checked:h-dvh peer-checked:z-30"
         >
+        </label>
+
+        <!-- Burger icon -->
+        <label
+          for="menu-toggler"
+          class="block md:hidden cursor-pointer peer-checked:hidden"
+        >
+          <img src="../assets/icons/menu-01.png" alt="Burger-Menu" />
+        </label>
+
+        <!-- Close icon -->
+        <label
+          for="menu-toggler"
+          class="hidden cursor-pointer peer-checked:flex md:hidden fixed right-4 z-50"
+        >
+          <img src="../assets/icons/x-icon.png" alt="Close-Button" />
+        </label>
+
+        <!-- Desktop nav links -->
+        <ul class="hidden md:flex gap-8 text-sm">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Service</a></li>
+          <li><a href="#">Our Work</a></li>
+          <li><a href="#">Team</a></li>
+        </ul>
+
+        <!-- Desktop button -->
+        <button class="hidden md:block md:w-[12.5%] bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold py-2 rounded-full transition-colors cursor-pointer">
+          <p class="text-sm md:text-md lg:text-md">Contact Us</p>
+        </button>
+
+        <!-- Mobile menu overlay -->
+        <div class="hidden peer-checked:flex fixed left-0 right-0 top-16 bottom-0 z-40 bg-black flex-col items-start py-6 px-4 md:hidden">
           <ul class="flex flex-col gap-6 text-lg font-semibold text-white w-full">
-            <li><a href="#" onclick="toggleMenu()"><p class="text-sm">About</p></a></li>
-            <li><a href="#" onclick="toggleMenu()"><p class="text-sm">Service</p></a></li>
-            <li><a href="#" onclick="toggleMenu()"><p class="text-sm">Our Work</p></a></li>
-            <li><a href="#" onclick="toggleMenu()"><p class="text-sm">Team</p></a></li>
+            <li><a href="#"><p class="text-sm">About</p></a></li>
+            <li><a href="#"><p class="text-sm">Service</p></a></li>
+            <li><a href="#"><p class="text-sm">Our Work</p></a></li>
+            <li><a href="#"><p class="text-sm">Team</p></a></li>
             <li class="w-full">
               <button class="w-full bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold py-2 px-6 rounded-full transition-colors cursor-pointer">
-                Contact Us
+                <p class="text-sm md:text-md lg:text-md">Contact Us</p>
               </button>
             </li>
           </ul>
         </div>
+
+      </nav>
     </header>
+
+    <!-- Spacer setinggi navbar agar konten tidak tertutup -->
+    <div class="h-16"></div>
 
     <!-- ========== HERO SECTION ========== -->
     <main
@@ -378,35 +387,5 @@
       <p class="text-xs text-neutral-500 md:text-md lg:text-md">
         &copy; 2025 Web Programming Hack. All rights reserved.
       </p>
-
-
-
-  <!-- Javascript -->
-   <script>
-      function toggleMenu() {
-        const menu = document.getElementById('mobile-menu');
-        const burgerIcon = document.getElementById('burger-icon');
-        const closeIcon = document.getElementById('close-icon');
-        const navbar = document.querySelector('header nav');
-
-        const isOpen = menu.style.display === 'flex';
-
-        if (isOpen) {
-          menu.style.display = 'none';
-          burgerIcon.style.display = 'block';
-          closeIcon.style.display = 'none';
-          document.body.style.overflow = '';
-        } else {
-          // Hitung tinggi navbar agar overlay mulai tepat di bawahnya
-          const navHeight = navbar.getBoundingClientRect().bottom;
-          menu.style.top = navHeight + 'px';
-          menu.style.display = 'flex';
-          burgerIcon.style.display = 'none';
-          closeIcon.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-        }
-      }
-    </script>
-
   </body>
 </html>

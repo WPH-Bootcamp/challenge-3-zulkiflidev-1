@@ -10,11 +10,9 @@
   --text-display-xl: 40px;
   --text-display-md: 32px;
   --text-display-sm: 28px;
-
   --text-display-xs: 24px;
 
   /* CUSTOM LINE HEIGHT - menurut figma design system */
-
   --leading-display-3xl: 72px;
   --leading-display-xl: 48px;
   --leading-display-md: 40px;
@@ -32,11 +30,8 @@
   --leading-md: 30px;
 
   /* CUSTOM COLORS - menurut figma design system */
-  /* Untuk Button */
   --color-primary-100: #421abc;
   --color-primary-blue-dark: #0056b3;
-
-  /* Untuk text */
   --color-neutral-500: #717680;
   --color-neutral-800: #252b37;
   --color-neutral-900: #181d27;
