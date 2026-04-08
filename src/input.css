@@ -1,20 +1,24 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 @theme {
   /* FONT FAMILY */
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-young: 'Young Serif', serif;
 
   /* CUSTOM FONT SIZES -  menurut figma design system */
   --text-display-3xl: 60px;
+  --text-display-2xl: 48px;
   --text-display-xl: 40px;
+  --text-display-lg: 36px;
   --text-display-md: 32px;
   --text-display-sm: 28px;
   --text-display-xs: 24px;
 
   /* CUSTOM LINE HEIGHT - menurut figma design system */
   --leading-display-3xl: 72px;
+  --leading-display-2xl: 60px;
   --leading-display-xl: 48px;
+  --leading-display-lg: 44px;
   --leading-display-md: 40px;
   --leading-display-sm: 38px;
   --leading-display-xs: 36px;
@@ -31,14 +35,21 @@
 
   /* CUSTOM COLORS - menurut figma design system */
   --color-primary-100: #421abc;
-  --color-primary-blue-dark: #0056b3;
   --color-neutral-500: #717680;
   --color-neutral-800: #252b37;
   --color-neutral-900: #181d27;
+  --color-neutral-25: #fdfdfd;
 
-  /* Tambahkan line-height */
-  --line-height-xs: 1;
-  --line-height-utama: 1;
+  --color-primary-blue-dark: #0056b3;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Young+Serif&display=swap');
+@layer components {
+  .btn-primary {
+    @apply bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold
+           py-2 rounded-full transition-colors cursor-pointer
+           focus:outline-none focus:ring-2 focus:ring-primary-100;
+  }
+  .input-field {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-100;
+  }
+}
