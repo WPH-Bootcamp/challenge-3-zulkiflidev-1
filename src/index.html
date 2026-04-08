@@ -11,9 +11,13 @@
     <header class="relative z-50">
       <nav
         id="main-nav"
+        aria-label="Main navigation"
         class="flex items-center justify-between lg:justify-around mx-2 py-4 px-2"
       >
-        <a href="#" class="flex items-center gap-1">
+        <a
+          href="#"
+          class="flex items-center rounded focus:outline-none focus:ring-2 focus:ring-primary-100"
+        >
           <span class="text-display-xs font-bold">Tech.</span>
         </a>
         <!-- Burger/Close Button -->
@@ -28,39 +32,41 @@
             id="burger-icon"
             src="../assets/icons/burger-icon.png"
             aria-hidden="true"
+            alt=""
           />
           <img
             id="close-icon"
             src="../assets/icons/x-icon.png"
             aria-hidden="true"
             class="hidden"
+            alt=""
           />
         </button>
 
         <!-- Desktop nav links -->
         <ul class="hidden lg:flex gap-8 text-sm">
           <li>
-            <a href="#about-section" class="js-nav-link block py-2">About</a>
+            <a href="#about-section" data-nav-link class="nav-link">About</a>
           </li>
           <li>
-            <a href="#service-section" class="js-nav-link block py-2"
+            <a href="#service-section" data-nav-link class="nav-link"
               >Service</a
             >
           </li>
           <li>
-            <a href="#our-work-section" class="js-nav-link block py-2"
+            <a href="#our-work-section" data-nav-link class="nav-link"
               >Our Work</a
             >
           </li>
           <li>
-            <a href="#team-section" class="js-nav-link block py-2">Team</a>
+            <a href="#team-section" data-nav-link class="nav-link">Team</a>
           </li>
         </ul>
 
         <!-- Desktop button -->
         <button
           type="button"
-          data-target="contact-section"
+          data-scroll-target="contact-section"
           class="btn-primary hidden lg:block lg:w-[12.5%] text-sm lg:text-md"
         >
           Contact Us
@@ -70,31 +76,33 @@
       <!-- Mobile menu overlay — mulai dari bawah navbar -->
       <div
         id="mobile-menu"
-        class="hidden fixed left-0 right-0 bottom-0 z-40 bg-black flex-col items-start justify-start py-6 px-4 lg:hidden"
+        role="navigation"
+        aria-label="Mobile navigation"
+        class="hidden fixed left-0 right-0 bottom-0 z-40 bg-black items-start justify-start py-6 px-4"
       >
         <ul
           class="flex flex-col gap-2 font-semibold w-full text-sm text-neutral-25"
         >
           <li>
-            <a href="#about-section" class="js-nav-link block py-2">About</a>
+            <a href="#about-section" data-nav-link class="nav-link">About</a>
           </li>
           <li>
-            <a href="#service-section" class="js-nav-link block py-2"
+            <a href="#service-section" data-nav-link class="nav-link"
               >Service</a
             >
           </li>
           <li>
-            <a href="#our-work-section" class="js-nav-link block py-2"
+            <a href="#our-work-section" data-nav-link class="nav-link"
               >Our Work</a
             >
           </li>
           <li>
-            <a href="#team-section" class="js-nav-link block py-2">Team</a>
+            <a href="#team-section" data-nav-link class="nav-link">Team</a>
           </li>
           <li class="w-full">
             <button
               type="button"
-              data-target="contact-section"
+              data-scroll-target="contact-section"
               class="btn-primary w-full my-4 px-6"
             >
               Contact Us
@@ -105,7 +113,7 @@
     </header>
 
     <!-- ========== HERO SECTION ========== -->
-    <main class="mx-2 pt-4 px-2">
+    <main class="mx-2 pt-4">
       <section
         aria-labelledby="hero-title"
         class="bg-[linear-gradient(to_bottom,_black_0%,_#210a5e4d_30%)] min-h-screen lg:flex lg:items-center lg:justify-around lg:px-20"
@@ -126,7 +134,7 @@
           </p>
           <button
             type="button"
-            data-target="contact-section"
+            data-scroll-target="contact-section"
             class="btn-primary w-full lg:w-1/2 my-4 text-sm lg:text-md"
           >
             Let's Talk
@@ -141,11 +149,11 @@
         </div>
       </section>
 
-      <!-- ========== who are we section ========== -->
+      <!-- ========== WHO WE ARE SECTION ========== -->
       <section
         id="about-section"
         aria-labelledby="about-title"
-        class="flex flex-col items-center text-center mt-8 mb-4 py-4 px-2 gap-4"
+        class="flex flex-col items-center text-center mt-8 mb-4 gap-4"
       >
         <h2
           id="about-title"
@@ -155,25 +163,21 @@
         </h2>
 
         <p
-          class="text-lg leading-lg font-semibold md:text-display-sm md:leading-display-sm lg:text-display-md lg:leading-display-md py-4 px-2"
+          class="text-neutral-500 text-lg leading-lg font-semibold md:text-display-sm md:leading-display-sm lg:text-display-md lg:leading-display-md py-4 px-4"
         >
-          <span class="text-neutral-500"
-            >We're a group of tech students trained in</span
+          We're a group of tech students trained in building real-world digital
+          products. From coding to design, we
+          <span class="text-white"
+            >craft modern solutions for modern problems.</span
           >
-          building real-world digital products.<span
-            class="md:block text-neutral-500"
-          >
-            From coding to design, we</span
-          >
-          craft modern solutions for modern problems.
         </p>
       </section>
 
-      <!-- ========== what we do section ========== -->
+      <!-- ========== WHAT WE DO SECTION ========== -->
       <section
         id="service-section"
         aria-labelledby="service-title"
-        class="flex flex-col items-center text-center my-4 py-4 px-4 gap-4"
+        class="flex flex-col items-center text-center my-6 py-4 px-4 gap-4"
       >
         <h2
           id="service-title"
@@ -186,9 +190,7 @@
         </p>
 
         <div class="grid grid-cols-2 gap-4 lg:grid-cols-3 md:mx-10 lg:mx-20">
-          <article
-            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
-          >
+          <article class="service-card">
             <img
               src="../assets/icons/whatwedo/Website.png"
               alt="Website Icon"
@@ -199,9 +201,7 @@
               Modern websites using HTML, CSS, JavaScript, and frameworks.
             </p>
           </article>
-          <article
-            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
-          >
+          <article class="service-card">
             <img
               src="../assets/icons/whatwedo/Mobile.png"
               alt="Mobile App Icon"
@@ -212,9 +212,7 @@
               Mobile and desktop apps tailored for your needs
             </p>
           </article>
-          <article
-            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
-          >
+          <article class="service-card">
             <img
               src="../assets/icons/whatwedo/AI.png"
               alt="AI Integration Icon"
@@ -225,9 +223,7 @@
               Smart solutions using AI-powered tools and automation.
             </p>
           </article>
-          <article
-            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
-          >
+          <article class="service-card">
             <img
               src="../assets/icons/whatwedo/Paint.png"
               alt="UI/UX Design Icon"
@@ -238,9 +234,7 @@
               Clean and functional designs for better user experience.
             </p>
           </article>
-          <article
-            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
-          >
+          <article class="service-card">
             <img
               src="../assets/icons/whatwedo/LandingPage.png"
               alt="Landing Page Design Icon"
@@ -251,9 +245,7 @@
               High-converting landing pages for your product or business.
             </p>
           </article>
-          <article
-            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
-          >
+          <article class="service-card">
             <img
               src="../assets/icons/whatwedo/CMS.png"
               alt="CMS Integration Icon"
@@ -267,11 +259,11 @@
         </div>
       </section>
 
-      <!-- ========== Our Work section ========== -->
+      <!-- ========== OUR WORK SECTION ========== -->
       <section
         id="our-work-section"
         aria-labelledby="work-title"
-        class="flex flex-col items-center text-center my-4 py-4 px-4 gap-4"
+        class="flex flex-col items-center text-center my-6 py-4 px-4 gap-4"
       >
         <h2
           id="work-title"
@@ -284,7 +276,7 @@
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 lg:gap-4 lg:px-20">
-          <article class="py-4">
+          <article class="work-card">
             <img
               src="../assets/images/ourwork/portofolio-1.png"
               alt="Our e-commerce project website view - 1"
@@ -292,7 +284,7 @@
             <p class="text-left text-md md:text-lg lg:text-xl">Portofolio 1</p>
           </article>
 
-          <article class="py-4">
+          <article class="work-card">
             <img
               src="../assets/images/ourwork/portofolio-2.png"
               alt="Our e-commerce project website view - 2"
@@ -300,7 +292,7 @@
             <p class="text-left text-md md:text-lg lg:text-xl">Portofolio 2</p>
           </article>
 
-          <article class="py-4">
+          <article class="work-card">
             <img
               src="../assets/images/ourwork/portofolio-3.png"
               alt="Our e-commerce project website view - 3"
@@ -310,11 +302,11 @@
         </div>
       </section>
 
-      <!-- ========== Team section ========== -->
+      <!-- ========== TEAM SECTION ========== -->
       <section
         id="team-section"
         aria-labelledby="team-title"
-        class="flex flex-col items-center text-center my-4 py-4 gap-4"
+        class="flex flex-col items-center text-center my-6 py-4 gap-4"
       >
         <h2
           id="team-title"
@@ -326,59 +318,61 @@
           A group of future-ready tech makers.
         </p>
 
-        <div class="grid-cols-2 gap-4 py-4 px-2 md:grid-cols-4 grid lg:px-24">
-          <article class="flex flex-col items-center py-4 px-2 gap-2">
+        <div class="grid grid-cols-2 gap-4 py-4 px-2 md:grid-cols-4 lg:px-24">
+          <article class="team-card">
             <img
               src="../assets/images/memberteam/JasperKim.png"
               alt="Jasper Kim, Project Manager"
               class="rounded-full object-cover"
             />
 
-            <p class="text-md font-bold md:text-lg lg:text-xl">Jasper Kim</p>
+            <h3 class="text-md font-bold md:text-lg lg:text-xl">Jasper Kim</h3>
             <p class="text-sm text-neutral-500 lg:text-md">Project Manager</p>
           </article>
 
-          <article class="flex flex-col items-center py-4 px-2 gap-2">
+          <article class="team-card">
             <img
               src="../assets/images/memberteam/AlexJonathan.png"
               alt="Alex Jonathan, Full-Stack Developer"
               class="rounded-full object-cover"
             />
 
-            <p class="text-md font-bold md:text-lg lg:text-xl">Alex Jonathan</p>
+            <h3 class="text-md font-bold md:text-lg lg:text-xl">
+              Alex Jonathan
+            </h3>
             <p class="text-sm text-neutral-500 lg:text-md">
               Full-Stack Developer
             </p>
           </article>
 
-          <article class="flex flex-col items-center py-4 px-2 gap-2">
+          <article class="team-card">
             <img
               src="../assets/images/memberteam/MarioLopez.png"
               alt="Mario Lopez, UI/UX Designer"
               class="rounded-full object-cover"
             />
 
-            <p class="text-md font-bold md:text-lg lg:text-xl">Mario Lopez</p>
+            <h3 class="text-md font-bold md:text-lg lg:text-xl">Mario Lopez</h3>
             <p class="text-sm text-neutral-500 lg:text-md">UI/UX Designer</p>
           </article>
 
-          <article class="flex flex-col items-center py-4 px-2 gap-2">
+          <article class="team-card">
             <img
               src="../assets/images/memberteam/JasperKim2.png"
-              alt="Jaspero Ahim, Data Scientist"
+              alt="Jasper Kim, Data Scientist"
               class="rounded-full object-cover"
             />
-            <p class="text-md font-bold md:text-lg lg:text-xl">Jaspero Ahim</p>
+            <h3 class="text-md font-bold md:text-lg lg:text-xl">Jasper Kim</h3>
             <p class="text-sm text-neutral-500 lg:text-md">Data Scientist</p>
           </article>
         </div>
       </section>
 
-      <!-- ========== Contact/Let's Collaborate section ========== -->
+      <!-- ========== CONTACT/LET'S COLLABORATE SECTION ========== -->
       <section
         id="contact-section"
         aria-labelledby="contact-title"
-        class="flex flex-col text-center my-4 py-4 px-2 gap-4 w-full lg:w-1/2 lg:mx-auto"
+        class="flex flex-col text-center my-6 py-4 px-2 gap-4 w-full lg:w-1/2 lg:mx-auto"
       >
         <h2
           id="contact-title"
@@ -390,9 +384,9 @@
           Need a tech team? We're ready to help
         </p>
 
-        <form action="#" method="POST" class="flex flex-col gap-8 py-4 px-2">
+        <form action="#" method="POST" class="flex flex-col gap-8">
           <div class="flex flex-col gap-2 w-full text-left">
-            <label for="user-name" class="text-sm font-medium text-left w-full"
+            <label for="user-name" class="text-sm font-medium w-full"
               >Name</label
             >
             <input
@@ -401,12 +395,12 @@
               type="text"
               required
               placeholder="Enter your Name"
-              class="input-field border border-neutral-800 rounded-lg p-2 w-full text-md bg-transparent"
+              class="form-input border border-neutral-800 rounded-lg p-2 w-full text-md bg-transparent"
             />
           </div>
 
           <div class="flex flex-col gap-2 w-full text-left">
-            <label for="user-email" class="text-sm font-medium text-left w-full"
+            <label for="user-email" class="text-sm font-medium w-full"
               >Email</label
             >
             <input
@@ -415,14 +409,12 @@
               name="email"
               required
               placeholder="Enter your Email"
-              class="input-field border border-neutral-800 rounded-lg p-2 w-full text-md bg-transparent"
+              class="form-input border border-neutral-800 rounded-lg p-2 w-full text-md bg-transparent"
             />
           </div>
 
           <div class="flex flex-col gap-2 w-full text-left">
-            <label
-              for="user-message"
-              class="text-sm font-medium text-left w-full"
+            <label for="user-message" class="text-sm font-medium w-full"
               >Message</label
             >
             <textarea
@@ -430,14 +422,11 @@
               name="message"
               required
               placeholder="Enter your Message"
-              class="input-field w-full min-h-32 border border-neutral-800 rounded-lg p-2 text-md bg-transparent"
+              class="form-input w-full min-h-32 border border-neutral-800 rounded-lg p-2 text-md bg-transparent"
             ></textarea>
           </div>
 
-          <button
-            type="submit"
-            class="btn-primary w-full my-4 text-sm lg:text-md"
-          >
+          <button type="submit" class="btn-primary w-full text-sm lg:text-md">
             Send
           </button>
         </form>
@@ -446,7 +435,7 @@
 
     <!-- ========== FOOTER ========== -->
     <footer
-      class="flex flex-col items-center text-center my-4 py-4 px-2 gap-4 lg:pt-20"
+      class="flex flex-col items-center text-center my-6 py-4 px-2 gap-4 lg:pt-20"
     >
       <p class="text-xs text-neutral-500 md:text-sm lg:text-md">
         &copy; 2025 Web Programming Hack. All rights reserved.
