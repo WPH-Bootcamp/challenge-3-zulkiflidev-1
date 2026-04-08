@@ -4,136 +4,126 @@ const btn = document.getElementById('menu-btn');
 const burgerIcon = document.getElementById('burger-icon');
 const closeIcon = document.getElementById('close-icon');
 const navbar = document.getElementById('main-nav');
+const DESKTOP_BREAKPOINT = 1024; // sesuai breakpoint lg di Tailwind
 
-// ===== TOGGLE MENU =====
-// Buka atau tutup mobile menu saat tombol burger diklik
-btn.addEventListener('click', () => {
-  // Cek apakah menu sedang terbuka (tidak memiliki class 'hidden')
-  const isOpen = !menu.classList.contains('hidden');
-
-  if (isOpen) {
-    // Tutup menu: sembunyikan overlay dan kembalikan tampilan ke semula
+// Jaga-jaga, Hentikan script jika ada elemen yang tidak ditemukan
+if (!menu || !btn || !burgerIcon || !closeIcon || !navbar) {
+  console.warn(
+    'Navigation: satu atau lebih elemen tidak ditemukan. Script dihentikan.'
+  );
+} else {
+  // ===== HELPER FUNCTIONS =====
+  function closeMenu() {
     menu.classList.add('hidden');
     menu.classList.remove('flex', 'flex-col');
-
-    // supaya halaman bisa discroll lagi setelah menu ditutup
     document.body.classList.remove('overflow-hidden');
-
-    // Tampilkan ikon burger, sembunyikan ikon close
     burgerIcon.classList.remove('hidden');
     closeIcon.classList.add('hidden');
-
-    // Update atribut aksesibilitas
     btn.setAttribute('aria-expanded', 'false');
-  } else {
-    // Hitung posisi bawah navbar agar menu mulai tepat di bawahnya
+  }
+
+  function openMenu() {
     const navHeight = navbar.getBoundingClientRect().bottom;
     menu.style.top = navHeight + 'px';
-
-    // Buka menu: tampilkan overlay sebagai flex column
     menu.classList.remove('hidden');
     menu.classList.add('flex', 'flex-col');
-
-    // Kunci scroll halaman selama menu terbuka
     document.body.classList.add('overflow-hidden');
-
-    // Tampilkan ikon close, sembunyikan ikon burger
     burgerIcon.classList.add('hidden');
     closeIcon.classList.remove('hidden');
-
-    // Update atribut aksesibilitas
     btn.setAttribute('aria-expanded', 'true');
   }
-});
 
-// Supaya tombol enter dan space bisa akses toggle menu juga
-btn.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault(); // Cegah scroll halaman saat Space ditekan
-    btn.click();
-  }
-});
-
-// ===== SCROLL HELPER =====
-//supaya bisa scroll smooth ke section tertentu berdasarkan ID-nya
-function scrollToSection(targetId) {
-  const targetElement = document.getElementById(targetId);
-  if (!targetElement) return; // Batalkan jika elemen tidak ditemukan
-
-  targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  // Jika mobile menu sedang terbuka, tutup otomatis setelah navigasi
-  const isMenuOpen = !menu.classList.contains('hidden');
-  if (isMenuOpen) btn.click();
-}
-
-// ===== SCROLL: data-target buttons =====
-// Pasang event listener pada semua tombol dengan atribut "data-scroll-target"
-// (contoh: tombol "Contact Us" dan "Let's Talk")
-document.querySelectorAll('[data-scroll-target]').forEach((button) => {
-  button.addEventListener('click', () => {
-    scrollToSection(button.getAttribute('data-scroll-target'));
+  // ===== TOGGLE MENU =====
+  // Buka atau tutup mobile menu saat tombol burger diklik
+  btn.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    isOpen ? closeMenu() : openMenu();
   });
-});
 
-// ===== SCROLL: nav links =====
-// Pasang event listener pada semua link navigasi dengan atribut "data-nav-link"
-// (contoh: link "About", "Service", "Our Work", "Team" di navbar)
-document.querySelectorAll('[data-nav-link]').forEach((link) => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    // Ambil ID target dari href, buang karakter '#' di depannya
-    scrollToSection(link.getAttribute('href').substring(1));
+  // Supaya tombol Enter dan Space bisa akses toggle menu juga
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      btn.click();
+    }
   });
-});
 
-// ===== AUTO-CLOSE MENU SAAT LAYAR DIPERBESAR =====
-// Tutup mobile menu otomatis jika layar diperbesar ke ukuran desktop
-window.addEventListener('resize', () => {
-  const isDesktop = window.innerWidth >= 1024;
-  const isMenuOpen = !menu.classList.contains('hidden');
+  // ===== SCROLL HELPER =====
+  // Scroll smooth ke section tertentu berdasarkan ID-nya
+  function scrollToSection(targetId) {
+    const targetElement = document.getElementById(targetId);
+    if (!targetElement) return;
 
-  if (isDesktop && isMenuOpen) {
-    menu.classList.add('hidden');
-    menu.classList.remove('flex', 'flex-col');
-    document.body.classList.remove('overflow-hidden');
-    burgerIcon.classList.remove('hidden');
-    closeIcon.classList.add('hidden');
-    btn.setAttribute('aria-expanded', 'false');
+    // Dapatkan tinggi navbar untuk menghindari overlap saat scroll
+    const navHeight = navbar.getBoundingClientRect().height;
+
+    // Hitung posisi scroll dengan memperhitungkan tinggi navbar agar section tidak tertutup
+    const top =
+      targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
+    window.scrollTo({ top, behavior: 'smooth' }); // Scroll dengan animasi smooth
+
+    const isMenuOpen = !menu.classList.contains('hidden');
+    if (isMenuOpen) closeMenu();
   }
-});
 
-// ===== FOCUS TRAP =====
-// Pastikan fokus tetap berada di dalam mobile menu saat menu terbuka, dan tombol Escape bisa menutup menu
-menu.addEventListener('keydown', (e) => {
-  const isMenuOpen = !menu.classList.contains('hidden');
-  if (!isMenuOpen) return;
+  // ===== SCROLL: data-scroll-target buttons =====
+  // Tombol "Contact Us" dan "Let's Talk"
+  document.querySelectorAll('[data-scroll-target]').forEach((button) => {
+    button.addEventListener('click', () => {
+      scrollToSection(button.getAttribute('data-scroll-target'));
+    });
+  });
 
-  const focusableElements = menu.querySelectorAll(
-    'a[href], button:not([disabled])'
-  );
-  const firstElement = focusableElements[0]; // Elemen pertama yang bisa difokuskan di menu
-  const lastElement = focusableElements[focusableElements.length - 1]; // Elemen terakhir yang bisa difokuskan di menu
+  // ===== SCROLL: nav links =====
+  // Link "About", "Service", "Our Work", "Team" di navbar
+  document.querySelectorAll('[data-nav-link]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToSection(link.getAttribute('href').substring(1));
+    });
+  });
 
-  if (e.key === 'Tab') {
-    if (e.shiftKey) {
-      if (document.activeElement === firstElement) {
-        // Jika Shift+Tab di elemen pertama, pindahkan fokus ke elemen terakhir
-        e.preventDefault(); // Cegah fokus keluar dari menu saat Shift+Tab di elemen pertama
-        lastElement.focus(); // Pindahkan fokus ke elemen terakhir
-      }
-    } else {
-      if (document.activeElement === lastElement) {
-        // Jika Tab di elemen terakhir, pindahkan fokus ke elemen pertama
-        e.preventDefault(); // Cegah fokus keluar dari menu saat Tab di elemen terakhir
-        firstElement.focus(); // Pindahkan fokus ke elemen pertama
+  // ===== AUTO-CLOSE MENU SAAT LAYAR DIPERBESAR =====
+  // Tutup mobile menu otomatis jika layar diperbesar ke ukuran desktop
+  window.addEventListener('resize', () => {
+    const isDesktop = window.innerWidth >= DESKTOP_BREAKPOINT; // Cek apakah sudah di breakpoint desktop
+    const isMenuOpen = !menu.classList.contains('hidden');
+    if (isDesktop && isMenuOpen) closeMenu();
+  });
+
+  // ===== FOCUS TRAP + ESCAPE KEY =====
+  // Dipasang di document agar Escape selalu terpicu,
+  // tidak peduli fokus sedang di mana
+  document.addEventListener('keydown', (e) => {
+    const isMenuOpen = !menu.classList.contains('hidden');
+    if (!isMenuOpen) return;
+
+    const focusableElements = menu.querySelectorAll(
+      'a[href], button:not([disabled])'
+    );
+    const firstElement = focusableElements[0]; // Elemen pertama yang bisa difokus
+    const lastElement = focusableElements[focusableElements.length - 1]; // Elemen terakhir yang bisa difokus
+
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          // Shift + Tab di first element
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          // Tab di last element
+          e.preventDefault();
+          firstElement.focus();
+        }
       }
     }
-  }
 
-  if (e.key === 'Escape') {
-    // Jika tombol Escape ditekan, tutup menu dan kembalikan fokus ke tombol menu
-    btn.click();
-    btn.focus();
-  }
-});
+    if (e.key === 'Escape') {
+      // Tutup menu saat Escape ditekan
+      closeMenu();
+      btn.focus();
+    }
+  });
+}
