@@ -7,385 +7,453 @@
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body class="font-sans bg-black text-white">
-    <!-- ========== NAVBAR ========== -->   
-
-    <header>
-      <nav class="fixed top-0 left-0 right-0 flex items-center justify-between md:justify-around lg:justify-around mx-2 py-4 px-2 bg-black z-50">
-
-        <!-- Logo -->
-        <div>
-          <p class="text-display-xs font-bold">Tech.</p>
-        </div>
-
-        <!-- Input checkbox -->
-        <input type="checkbox" id="menu-toggler" class="peer hidden" />
-
-        <!-- Label kosong sebagai scroll blocker -->
-        <label
-          for="menu-toggler"
-          class="md:hidden peer-checked:fixed peer-checked:top-16 peer-checked:left-0 peer-checked:w-dvw peer-checked:h-dvh peer-checked:z-30"
+    <!-- ========== NAVBAR ========== -->
+    <header class="relative z-50">
+      <nav
+        id="main-nav"
+        class="flex items-center justify-between lg:justify-around mx-2 py-4 px-2"
+      >
+        <a href="#" class="flex items-center gap-1">
+          <span class="text-display-xs font-bold">Tech.</span>
+        </a>
+        <!-- Burger/Close Button -->
+        <button
+          id="menu-btn"
+          class="block lg:hidden cursor-pointer relative"
+          aria-label="Toggle Menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
         >
-        </label>
-
-        <!-- Burger icon -->
-        <label
-          for="menu-toggler"
-          class="block md:hidden cursor-pointer peer-checked:hidden"
-        >
-          <img src="../assets/icons/menu-01.png" alt="Burger-Menu" />
-        </label>
-
-        <!-- Close icon -->
-        <label
-          for="menu-toggler"
-          class="hidden cursor-pointer peer-checked:flex md:hidden fixed right-4 z-50"
-        >
-          <img src="../assets/icons/x-icon.png" alt="Close-Button" />
-        </label>
+          <img
+            id="burger-icon"
+            src="../assets/icons/burger-menu.png"
+            aria-hidden="true"
+          />
+          <img
+            id="close-icon"
+            src="../assets/icons/x-icon.png"
+            aria-hidden="true"
+            class="hidden"
+          />
+        </button>
 
         <!-- Desktop nav links -->
-        <ul class="hidden md:flex gap-8 text-sm">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Service</a></li>
-          <li><a href="#">Our Work</a></li>
-          <li><a href="#">Team</a></li>
+        <ul class="hidden lg:flex gap-8 text-sm">
+          <li>
+            <a href="#about-section" class="js-nav-link block py-2">About</a>
+          </li>
+          <li>
+            <a href="#service-section" class="js-nav-link block py-2"
+              >Service</a
+            >
+          </li>
+          <li>
+            <a href="#our-work-section" class="js-nav-link block py-2"
+              >Our Work</a
+            >
+          </li>
+          <li>
+            <a href="#team-section" class="js-nav-link block py-2">Team</a>
+          </li>
         </ul>
 
         <!-- Desktop button -->
-        <button class="hidden md:block md:w-[12.5%] bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold py-2 rounded-full transition-colors cursor-pointer">
-          <p class="text-sm md:text-md lg:text-md">Contact Us</p>
+        <button
+          type="button"
+          data-target="contact-section"
+          class="btn-primary hidden lg:block lg:w-[12.5%] text-sm lg:text-md"
+        >
+          Contact Us
         </button>
-
-        <!-- Mobile menu overlay -->
-        <div class="hidden peer-checked:flex fixed left-0 right-0 top-16 bottom-0 z-40 bg-black flex-col items-start py-6 px-4 md:hidden">
-          <ul class="flex flex-col gap-6 text-lg font-semibold text-white w-full">
-            <li><a href="#"><p class="text-sm">About</p></a></li>
-            <li><a href="#"><p class="text-sm">Service</p></a></li>
-            <li><a href="#"><p class="text-sm">Our Work</p></a></li>
-            <li><a href="#"><p class="text-sm">Team</p></a></li>
-            <li class="w-full">
-              <button class="w-full bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold py-2 px-6 rounded-full transition-colors cursor-pointer">
-                <p class="text-sm md:text-md lg:text-md">Contact Us</p>
-              </button>
-            </li>
-          </ul>
-        </div>
-
       </nav>
+
+      <!-- Mobile menu overlay — mulai dari bawah navbar -->
+      <div
+        id="mobile-menu"
+        class="hidden fixed left-0 right-0 bottom-0 z-40 bg-black flex-col items-start justify-start py-6 px-4 lg:hidden"
+      >
+        <ul
+          class="flex flex-col gap-2 font-semibold w-full text-sm text-neutral-25"
+        >
+          <li>
+            <a href="#about-section" class="js-nav-link block py-2">About</a>
+          </li>
+          <li>
+            <a href="#service-section" class="js-nav-link block py-2"
+              >Service</a
+            >
+          </li>
+          <li>
+            <a href="#our-work-section" class="js-nav-link block py-2"
+              >Our Work</a
+            >
+          </li>
+          <li>
+            <a href="#team-section" class="js-nav-link block py-2">Team</a>
+          </li>
+          <li class="w-full">
+            <button
+              type="button"
+              data-target="contact-section"
+              class="btn-primary w-full my-4 px-6"
+            >
+              Contact Us
+            </button>
+          </li>
+        </ul>
+      </div>
     </header>
 
-    <!-- Spacer setinggi navbar agar konten tidak tertutup -->
-    <div class="h-16"></div>
-
     <!-- ========== HERO SECTION ========== -->
-    <main
-      class="bg-[linear-gradient(to_bottom,_black_0%,_#210a5e4d_30%)] min-h-screen mx-2 pt-4 px-2"
-    >
+    <main class="mx-2 pt-4 px-2">
       <section
-        class="md:flex md:items-center lg:flex md:justify-around md:px-20"
+        aria-labelledby="hero-title"
+        class="bg-[linear-gradient(to_bottom,_black_0%,_#210a5e4d_30%)] min-h-screen lg:flex lg:items-center lg:justify-around lg:px-20"
       >
-        <div class="md:flex-[1.2] md:max-w-[650px] md:-mt-[30px]">
-          <h1 class="text-display-xl leading-display-xl font-bold py-4 md:text-display-3xl md:leading-display-3xl lg:text-display-3xl lg:leading-display-3xl">
+        <div class="lg:flex-[1.2] lg:max-w-[650px] lg:-mt-[30px]">
+          <h1
+            id="hero-title"
+            class="text-display-xl leading-display-xl font-bold py-4 md:text-display-2xl md:leading-display-2xl lg:text-display-3xl lg:leading-display-3xl"
+          >
             Build with the <em>Future.</em>
           </h1>
-          <p class="text-neutral-500 leading-md py-4 md:text-xl md:leading-xl lg:text-xl lg:leading-xl">
+          <p
+            class="text-neutral-500 text-md leading-md md:text-lg md:leading-lg py-4 lg:text-xl lg:leading-xl"
+          >
             From building sleek websites and mobile apps to integrating AI
             solutions, we help brands turn ideas into powerful digital
             experiences that connect, engage, and scale.
           </p>
           <button
-            class="w-full md:w-1/2 bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold py-2 my-4 rounded-full transition-colors cursor-pointer"
+            type="button"
+            data-target="contact-section"
+            class="btn-primary w-full lg:w-1/2 my-4 text-sm lg:text-md"
           >
-            <p class="text-sm md:text-md lg:text-md">Let's Talk</p>
+            Let's Talk
           </button>
         </div>
-        <div
-          class="lg:flex lg:flex-1 lg:justify-start -translate-x-12 -translate-y-0"
-        >
+        <div class="lg:flex-1 lg:flex lg:justify-start lg:-translate-x-12">
           <img
             class="lg:w-full"
             src="../assets/images/hand.png"
-            alt="Main Image"
+            alt="image of a hand holding a smartphone"
           />
         </div>
       </section>
-    </main>
 
-    <!-- who are we section -->
-    <section
-      class="flex flex-col items-center text-center mt-8 mb-4 py-4 px-4 gap-4"
-    >
-      <h2 class="text-display-sm font-bold md:text-display-xl lg:text-display-xl"">Who We Are</h2>
-
-      <p
-        class="text-lg leading-lg font-semibold md:text-display-md lg:text-display-md md:leading-display-md lg:leading-display-md md:font-semi-bold lg:font-semi-bold py-4 px-2"
+      <!-- ========== who are we section ========== -->
+      <section
+        id="about-section"
+        aria-labelledby="about-title"
+        class="flex flex-col items-center text-center mt-8 mb-4 py-4 px-2 gap-4"
       >
-        <span class="text-neutral-500"
-          >We're a group of tech students trained in</span
+        <h2
+          id="about-title"
+          class="text-display-sm font-bold lg:text-display-xl"
         >
-        building real-world digital products.<span class="text-neutral-500"
-          ><br />From coding to design, we</span
-        >
-        craft modern solutions for modern problems.
-      </p>
-    </section>
+          Who We Are
+        </h2>
 
-    <!-- what we do  section -->
-    <section
-      class="flex flex-col items-center text-center my-4 py-4 px-4 gap-4"
-    >
-      <div class="">
-        <h2 class="text-display-sm font-bold md:text-display-xl lg:text-display-xl">What We Do</h2>
-        <p class="text-sm text-neutral-500 md:text-lg lg:text-lg">
+        <p
+          class="text-lg leading-lg font-semibold md:text-display-sm md:leading-display-sm lg:text-display-md lg:leading-display-md py-4 px-2"
+        >
+          <span class="text-neutral-500"
+            >We're a group of tech students trained in</span
+          >
+          building real-world digital products.<span
+            class="md:block text-neutral-500"
+          >
+            From coding to design, we</span
+          >
+          craft modern solutions for modern problems.
+        </p>
+      </section>
+
+      <!-- ========== what we do section ========== -->
+      <section
+        id="service-section"
+        aria-labelledby="service-title"
+        class="flex flex-col items-center text-center my-4 py-4 px-4 gap-4"
+      >
+        <h2
+          id="service-title"
+          class="text-display-sm font-bold md:text-display-lg lg:text-display-xl"
+        >
+          What We Do
+        </h2>
+        <p class="text-sm text-neutral-500 md:text-md lg:text-lg">
           We offer simple tech solutions to help your ideas grow.
         </p>
-      </div>
-      <div class="">
-        <div
-          class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3 md:mx-20 lg:mx-20"
-        >
-          <div
-            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+
+        <div class="grid grid-cols-2 gap-4 lg:grid-cols-3 md:mx-10 lg:mx-20">
+          <article
+            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
           >
             <img
               src="../assets/icons/whatwedo/Website.png"
-              alt="Website Development Icon"
-              class="whatwedo-icon"
+              alt="Website Icon"
+              aria-hidden="true"
             />
-            <h4 class="text-lg font-bold md:text-xl lg:text-xl">Web Development</h4>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">
+            <h3 class="text-lg font-bold lg:text-xl">Web Development</h3>
+            <p class="text-sm text-neutral-500 lg:text-md">
               Modern websites using HTML, CSS, JavaScript, and frameworks.
             </p>
-          </div>
-          <div
-            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          </article>
+          <article
+            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
           >
             <img
               src="../assets/icons/whatwedo/Mobile.png"
-              alt="Website Development Icon"
-              class="whatwedo-icon"
+              alt="Mobile App Icon"
+              aria-hidden="true"
             />
-            <h4 class="text-lg font-bold md:text-xl lg:text-xl">App Development</h4>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">
+            <h3 class="text-lg font-bold lg:text-xl">App Development</h3>
+            <p class="text-sm text-neutral-500 lg:text-md">
               Mobile and desktop apps tailored for your needs
             </p>
-          </div>
-          <div
-            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          </article>
+          <article
+            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
           >
             <img
               src="../assets/icons/whatwedo/AI.png"
-              alt="Website Development Icon"
-              class="whatwedo-icon"
+              alt="AI Integration Icon"
+              aria-hidden="true"
             />
-            <h4 class="text-lg font-bold md:text-xl lg:text-xl">AI Integration</h4>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">
+            <h3 class="text-lg font-bold lg:text-xl">AI Integration</h3>
+            <p class="text-sm text-neutral-500 lg:text-md">
               Smart solutions using AI-powered tools and automation.
             </p>
-          </div>
-          <div
-            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          </article>
+          <article
+            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
           >
             <img
               src="../assets/icons/whatwedo/Paint.png"
-              alt="Website Development Icon"
-              class="whatwedo-icon"
+              alt="UI/UX Design Icon"
+              aria-hidden="true"
             />
-            <h4 class="text-lg font-bold md:text-xl lg:text-xl">UI/UX Design</h4>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">
+            <h3 class="text-lg font-bold lg:text-xl">UI/UX Design</h3>
+            <p class="text-sm text-neutral-500 lg:text-md">
               Clean and functional designs for better user experience.
             </p>
-          </div>
-          <div
-            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          </article>
+          <article
+            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
           >
             <img
               src="../assets/icons/whatwedo/LandingPage.png"
-              alt="Website Development Icon"
-              class="whatwedo-icon"
+              alt="Landing Page Design Icon"
+              aria-hidden="true"
             />
-            <h4 class="text-lg font-bold md:text-xl lg:text-xl">Landing Page Design</h4>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">
+            <h3 class="text-lg font-bold lg:text-xl">Landing Page Design</h3>
+            <p class="text-sm text-neutral-500 lg:text-md">
               High-converting landing pages for your product or business.
             </p>
-          </div>
-          <div
-            class="flex flex-col border-[var(--color-neutral-900)] border-1 rounded-xl items-center justify-center gap-4 p-6"
+          </article>
+          <article
+            class="flex flex-col border-neutral-900 border rounded-xl items-center justify-center gap-4 p-6"
           >
             <img
               src="../assets/icons/whatwedo/CMS.png"
-              alt="Website Development Icon"
-              class="whatwedo-icon"
+              alt="CMS Integration Icon"
+              aria-hidden="true"
             />
-            <h4 class="text-lg font-bold md:text-xl lg:text-xl">CMS Integration</h4>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">
+            <h3 class="text-lg font-bold lg:text-xl">CMS Integration</h3>
+            <p class="text-sm text-neutral-500 lg:text-md">
               Easy-to-manage websites with WordPress or Webflow.
             </p>
-          </div>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- our work section -->
-    <section
-      class="flex flex-col items-center text-center my-4 py-4 px-4 gap-4"
-    >
-      <div class="">
-        <h2 class="text-display-sm font-bold md:text-display-xl lg:text-display-xl"">Our Work</h2>
-        <p class="text-md text-neutral-500 md:text-lg lg:text-lg">
+      <!-- ========== Our Work section ========== -->
+      <section
+        id="our-work-section"
+        aria-labelledby="work-title"
+        class="flex flex-col items-center text-center my-4 py-4 px-4 gap-4"
+      >
+        <h2
+          id="work-title"
+          class="text-display-sm font-bold lg:text-display-xl"
+        >
+          Our Work
+        </h2>
+        <p class="text-md text-neutral-500 lg:text-lg">
           See what we’ve built with passion and purpose
         </p>
-      </div>
 
-      <div class="">
-        <div
-          class="md:grid-cols-3 lg:grid-cols-3 md:gap-4 lg:gap-4 grid md:px-20 lg:px-20"
-        >
-          <div class="py-4 py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:gap-4 lg:px-20">
+          <article class="py-4">
             <img
               src="../assets/images/ourwork/portofolio-1.png"
-              alt="Our Work 1"
-              class=""
+              alt="Our e-commerce project website view - 1"
             />
-            <p class="flex flex-start text-md md:text-xl lg:text-xl">Portofolio 1</p>
-          </div>
+            <p class="text-left text-md md:text-lg lg:text-xl">Portofolio 1</p>
+          </article>
 
-          <div class="py-4 py-2">
+          <article class="py-4">
             <img
               src="../assets/images/ourwork/portofolio-2.png"
-              alt="Our Work 2"
-              class=""
+              alt="Our e-commerce project website view - 2"
             />
-            <p class="flex flex-start text-md md:text-xl lg:text-xl">Portofolio 2</p>
-          </div>
+            <p class="text-left text-md md:text-lg lg:text-xl">Portofolio 2</p>
+          </article>
 
-          <div class="py-4 py-2">
+          <article class="py-4">
             <img
               src="../assets/images/ourwork/portofolio-3.png"
-              alt="Our Work 3"
-              class=""
+              alt="Our e-commerce project website view - 3"
             />
-            <p class="flex flex-start text-md md:text-xl lg:text-xl">Portofolio 3</p>
-          </div>
+            <p class="text-left text-md md:text-lg lg:text-xl">Portofolio 3</p>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Meeet The Team section-->
-    <section
-      class="flex flex-col items-center text-center my-4 py-4 gap-4"
-    >
-      <div class="">
-        <h2 class="text-display-sm font-bold md:text-display-xl lg:text-display-xl">Meet The Team</h2>
-        <p class="text-md text-neutral-500 md:text-lg lg:text-lg">
+      <!-- ========== Team section ========== -->
+      <section
+        id="team-section"
+        aria-labelledby="team-title"
+        class="flex flex-col items-center text-center my-4 py-4 gap-4"
+      >
+        <h2
+          id="team-title"
+          class="text-display-sm font-bold md:text-display-lg lg:text-display-xl"
+        >
+          Meet The Team
+        </h2>
+        <p class="text-md text-neutral-500 lg:text-lg">
           A group of future-ready tech makers.
         </p>
-      </div>
 
-      <div class="">
-        <div
-          class="grid-cols-2 gap-4 py-4 px-2 md:grid-cols-4 lg:grid-cols-4 md:gap-4 lg:gap-4 grid md:px-25 lg:px-25"
-        >
-          <div class="flex flex-col items-center py-4 px-2">
+        <div class="grid-cols-2 gap-4 py-4 px-2 md:grid-cols-4 grid lg:px-24">
+          <article class="flex flex-col items-center py-4 px-2 gap-2">
             <img
               src="../assets/images/memberteam/JasperKim.png"
-              alt="meettheteam 1"
+              alt="Jasper Kim, Project Manager"
               class="rounded-full object-cover"
             />
-            <br />
-            <p class="text-md font-bold md:text-xl lg:text-xl">Jasper Kim</p>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">Project Manager</p>
-          </div>
 
-          <div class="flex flex-col items-center py-4 px-2">
+            <p class="text-md font-bold md:text-lg lg:text-xl">Jasper Kim</p>
+            <p class="text-sm text-neutral-500 lg:text-md">Project Manager</p>
+          </article>
+
+          <article class="flex flex-col items-center py-4 px-2 gap-2">
             <img
               src="../assets/images/memberteam/AlexJonathan.png"
-              alt="meetheteam 2"
+              alt="Alex Jonathan, Full-Stack Developer"
               class="rounded-full object-cover"
             />
-            <br />
-            <p class="text-md font-bold md:text-xl lg:text-xl">Alex Jonathan</p>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">Full-Stack Developer</p>
-          </div>
 
-          <div class="flex flex-col items-center py-4 px-2">
+            <p class="text-md font-bold md:text-lg lg:text-xl">Alex Jonathan</p>
+            <p class="text-sm text-neutral-500 lg:text-md">
+              Full-Stack Developer
+            </p>
+          </article>
+
+          <article class="flex flex-col items-center py-4 px-2 gap-2">
             <img
               src="../assets/images/memberteam/MarioLopez.png"
-              alt="meettheteam 3"
+              alt="Mario Lopez, UI/UX Designer"
               class="rounded-full object-cover"
             />
-            <br />
-            <p class="text-md font-bold md:text-xl lg:text-xl">Mario Lopez</p>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">UI/UX Designer</p>
-          </div>
 
-          <div class="flex flex-col items-center py-4 px-2">
+            <p class="text-md font-bold md:text-lg lg:text-xl">Mario Lopez</p>
+            <p class="text-sm text-neutral-500 lg:text-md">UI/UX Designer</p>
+          </article>
+
+          <article class="flex flex-col items-center py-4 px-2 gap-2">
             <img
               src="../assets/images/memberteam/JasperKim2.png"
-              alt="meettheteam 3"
+              alt="Jaspero Ahim, Data Scientist"
               class="rounded-full object-cover"
             />
-            <br />
-            <p class="text-md font-bold md:text-xl lg:text-xl">Jasper Kim</p>
-            <p class="text-sm text-neutral-500 md:text-md lg:text-md">Data Scientist</p>
-          </div>
+            <p class="text-md font-bold md:text-lg lg:text-xl">Jaspero Ahim</p>
+            <p class="text-sm text-neutral-500 lg:text-md">Data Scientist</p>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Let's Collaborate Section -->
-    <section
-      class="flex flex-col items-left text-center my-4 py-4 px-2 gap-4 w-full md:w-1/2 lg:w-1/2 md:mx-auto lg:mx-auto"
-    >
-      <div class="">
-        <h2 class="text-display-sm font-bold md:text-display-xl lg:text-display-xl">Let's Collaborate</h2>
-        <p class="text-neutral-500 text-md md:text-lg lg:text-lg">
+      <!-- ========== Contact/Let's Collaborate section ========== -->
+      <section
+        id="contact-section"
+        aria-labelledby="contact-title"
+        class="flex flex-col text-center my-4 py-4 px-2 gap-4 w-full lg:w-1/2 lg:mx-auto"
+      >
+        <h2
+          id="contact-title"
+          class="text-display-sm font-bold md:text-display-lg lg:text-display-xl"
+        >
+          Let's Collaborate
+        </h2>
+        <p class="text-neutral-500 text-md lg:text-lg">
           Need a tech team? We're ready to help
         </p>
-      </div>
-      <div class="">
-        <div
-          class="flex flex-col flex-start gap-8 py-4 px-2 md:flex-col md:gap-8 lg:flex-col lg:gap-8"
-        >
-          <div class="flex flex-col flex-start items-left gap-2 width-full">
-            <label class="flex flex-start text-sm md:text-sm lg:text-sm">Name</label>
+
+        <form action="#" method="POST" class="flex flex-col gap-8 py-4 px-2">
+          <div class="flex flex-col gap-2 w-full text-left">
+            <label for="user-name" class="text-sm font-medium text-left w-full"
+              >Name</label
+            >
             <input
+              id="user-name"
+              name="name"
               type="text"
+              required
               placeholder="Enter your Name"
-              class="border-1 border-[var(--color-neutral-800)] rounded-lg p-2 w-full text-md md:text-md lg:text-md"
+              class="input-field border border-neutral-800 rounded-lg p-2 w-full text-md bg-transparent"
             />
           </div>
 
-          <div class="flex flex-col flex-start items-left gap-2">
-            <label class="flex flex-start text-sm md:text-sm lg:text-sm">Email</label>
+          <div class="flex flex-col gap-2 w-full text-left">
+            <label for="user-email" class="text-sm font-medium text-left w-full"
+              >Email</label
+            >
             <input
+              id="user-email"
               type="email"
+              name="email"
+              required
               placeholder="Enter your Email"
-              class="border-1 border-[var(--color-neutral-800)] rounded-lg p-2 w-full text-md md:text-md lg:text-md"
+              class="input-field border border-neutral-800 rounded-lg p-2 w-full text-md bg-transparent"
             />
           </div>
 
-          <div class="flex flex-col flex-start items-left gap-2">
-            <label class="flex flex-start text-sm md:text-sm lg:text-sm">Message</label>
+          <div class="flex flex-col gap-2 w-full text-left">
+            <label
+              for="user-message"
+              class="text-sm font-medium text-left w-full"
+              >Message</label
+            >
             <textarea
+              id="user-message"
+              name="message"
+              required
               placeholder="Enter your Message"
-              class="w-full h-[134px] border-1 border-[var(--color-neutral-800)] rounded-lg p-2 text-md md:text-md lg:text-md"
+              class="input-field w-full min-h-32 border border-neutral-800 rounded-lg p-2 text-md bg-transparent"
             ></textarea>
           </div>
 
           <button
-            class="w-full bg-primary-100 hover:bg-primary-blue-dark text-white font-semibold py-2 my-4 rounded-full transition-colors cursor-pointer"
+            type="submit"
+            class="btn-primary w-full my-4 text-sm lg:text-md"
           >
-            <p class="text-sm md:text-md lg:text-md">Send</p>
+            Send
           </button>
-        </div>
-      </div>
-    </section>
+        </form>
+      </section>
+    </main>
 
     <!-- ========== FOOTER ========== -->
-     <div class="flex flex-col items-center text-center my-4 py-4 px-2 gap-4 md:pt-20 lg:pt-20">
-      <p class="text-xs text-neutral-500 md:text-md lg:text-md">
+    <footer
+      class="flex flex-col items-center text-center my-4 py-4 px-2 gap-4 lg:pt-20"
+    >
+      <p class="text-xs text-neutral-500 md:text-sm lg:text-md">
         &copy; 2025 Web Programming Hack. All rights reserved.
       </p>
+    </footer>
+
+    <!-- Javascript -->
+    <script src="./script.js"></script>
   </body>
 </html>
