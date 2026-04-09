@@ -41,6 +41,7 @@
   --color-neutral-25: #fdfdfd;
 
   --color-primary-blue-dark: #0056b3;
+  --color-primary-glow: #210a5e4d;
 }
 
 @layer components {
@@ -54,8 +55,10 @@
            focus:outline-none focus:ring-2 focus:ring-primary-100;
   }
 
+  /* ✅ SESUDAH — input.css */
   .form-input {
-    @apply focus:outline-none focus:ring-2 focus:ring-primary-100;
+    @apply border border-neutral-800 rounded-lg p-2 w-full text-md bg-transparent
+         focus:outline-none focus:ring-2 focus:ring-primary-100 resize-none;
   }
 
   .service-card {

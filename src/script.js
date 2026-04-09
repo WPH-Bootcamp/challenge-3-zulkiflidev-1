@@ -20,6 +20,7 @@ if (!menu || !btn || !burgerIcon || !closeIcon || !navbar) {
     burgerIcon.classList.remove('hidden');
     closeIcon.classList.add('hidden');
     btn.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
   }
 
   function openMenu() {
@@ -31,6 +32,11 @@ if (!menu || !btn || !burgerIcon || !closeIcon || !navbar) {
     burgerIcon.classList.add('hidden');
     closeIcon.classList.remove('hidden');
     btn.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-hidden', 'false');
+
+    //supaya fokus langsung ke link pertama di menu saat dibuka, untuk aksesibilitas
+    const firstLink = menu.querySelector('a[href], button:not([disabled])');
+    if (firstLink) firstLink.focus();
   }
 
   // ===== TOGGLE MENU =====
@@ -98,11 +104,12 @@ if (!menu || !btn || !burgerIcon || !closeIcon || !navbar) {
     const isMenuOpen = !menu.classList.contains('hidden');
     if (!isMenuOpen) return;
 
-    const focusableElements = menu.querySelectorAll(
-      'a[href], button:not([disabled])'
+    const menuFocusables = Array.from(
+      menu.querySelectorAll('a[href], button:not([disabled])')
     );
-    const firstElement = focusableElements[0]; // Elemen pertama yang bisa difokus
-    const lastElement = focusableElements[focusableElements.length - 1]; // Elemen terakhir yang bisa difokus
+    const focusableElements = [btn, ...menuFocusables]; // btn = tombol burger
+    const firstElement = focusableElements[0]; // → btn
+    const lastElement = focusableElements[focusableElements.length - 1]; // → "Contact Us"
 
     if (e.key === 'Tab') {
       if (e.shiftKey) {
