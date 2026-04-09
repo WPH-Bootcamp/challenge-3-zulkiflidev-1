@@ -77,11 +77,11 @@
         </button>
       </nav>
 
-      <!-- Mobile menu overlay — mulai dari bawah navbar -->
-      <div
+      <!-- Mobile menu -->
+      <nav
         id="mobile-menu"
-        role="navigation"
         aria-label="Mobile navigation"
+        aria-hidden="true"
         class="hidden fixed left-0 right-0 bottom-0 z-40 bg-black items-start justify-start py-6 px-4"
       >
         <ul
@@ -113,14 +113,14 @@
             </button>
           </li>
         </ul>
-      </div>
+      </nav>
     </header>
 
     <!-- ========== HERO SECTION ========== -->
     <main class="mx-2 pt-4">
       <section
         aria-labelledby="hero-title"
-        class="bg-[linear-gradient(to_bottom,_black_0%,_#210a5e4d_30%)] min-h-screen lg:flex lg:items-center lg:justify-around lg:px-20"
+        class="bg-[linear-gradient(to_bottom,_black_0%,_var(--color-primary-glow)_60%)] min-h-screen lg:flex lg:items-center lg:justify-around lg:px-20"
       >
         <div class="lg:flex-[1.2] lg:max-w-[650px] lg:-mt-[30px]">
           <h1
@@ -148,7 +148,7 @@
           <img
             class="lg:w-full"
             src="../assets/images/hand.png"
-            alt="image of a hand holding a smartphone"
+            alt="Hand holding a smartphone"
           />
         </div>
       </section>
@@ -279,14 +279,16 @@
           See what we’ve built with passion and purpose
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:gap-4 lg:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 md:gap-4 lg:gap-6 lg:px-20">
           <article class="work-card">
             <img
               src="../assets/images/ourwork/portofolio-1.png"
               alt="Our e-commerce project website view - 1"
               class="w-full"
             />
-            <p class="text-left text-md md:text-lg lg:text-xl">Portofolio 1</p>
+            <h3 class="text-left text-md md:text-lg lg:text-xl">
+              Portofolio 1
+            </h3>
           </article>
 
           <article class="work-card">
@@ -295,7 +297,9 @@
               alt="Our e-commerce project website view - 2"
               class="w-full"
             />
-            <p class="text-left text-md md:text-lg lg:text-xl">Portofolio 2</p>
+            <h3 class="text-left text-md md:text-lg lg:text-xl">
+              Portofolio 2
+            </h3>
           </article>
 
           <article class="work-card">
@@ -304,7 +308,9 @@
               alt="Our e-commerce project website view - 3"
               class="w-full"
             />
-            <p class="text-left text-md md:text-lg lg:text-xl">Portofolio 3</p>
+            <h3 class="text-left text-md md:text-lg lg:text-xl">
+              Portofolio 3
+            </h3>
           </article>
         </div>
       </section>
@@ -399,10 +405,11 @@
             <input
               id="user-name"
               name="name"
+              autocomplete="name"
               type="text"
               required
               placeholder="Enter your Name"
-              class="form-input border border-neutral-800 rounded-lg p-2 w-full text-md bg-transparent"
+              class="form-input"
             />
           </div>
 
@@ -413,10 +420,11 @@
             <input
               id="user-email"
               type="email"
+              autocomplete="email"
               name="email"
               required
               placeholder="Enter your Email"
-              class="form-input border border-neutral-800 rounded-lg p-2 w-full text-md bg-transparent"
+              class="form-input"
             />
           </div>
 
@@ -428,8 +436,9 @@
               id="user-message"
               name="message"
               required
+              rows="5"
               placeholder="Enter your Message"
-              class="form-input w-full min-h-32 border border-neutral-800 rounded-lg p-2 text-md bg-transparent"
+              class="form-input min-h-32"
             ></textarea>
           </div>
 
